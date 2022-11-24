@@ -4,15 +4,23 @@ const {MongoClient, ObjectId} = require('mongodb');
 
 require('dotenv').config();
 
+
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res)=>{
-    res.send("Welcome to Home Page")
+    res.send("Please pick and action");
 })
 
+/*
+
+helpful link :
+
+https://www.mongodb.com/languages/mern-stack-tutorial
+
+*/
 
 let dbConnection;
 let db;
@@ -33,6 +41,8 @@ async function main(){
     try{
         await client.connect();
 
+        selection();
+
         //await deleteListingByName(client, "Cozy house at Beyoğlu");
 
         //await updateListingByName(client, "Lovely Loft", {bedrooms:2, beds: 2});
@@ -45,14 +55,14 @@ async function main(){
         
         //await findOneListingByName(client, "Horto flat with small garden" )
 
-        await createListing(client,
+        /*await createListing(client,
             {
-                name: "Nice Loft",
+                name: "cool little house",
                 summary: "A charming loft in Paris",
-                bedrooms: 1,
+                bedrooms: 2,
                 bathrooms: 1
             }
-        );
+        );*/
 
     }catch(e){
         console.error(e);
@@ -64,6 +74,13 @@ async function main(){
 main().catch(console.error);
 
 function selection(){
+    /*console.log("Please pick and action");
+    console.log("---------------------------");
+    console.log("press c : create an entry");
+    console.log("press r : list all entries");
+    console.log("press u : update an entry");
+    console.log("press d : delete an entry from list");*/
+
     console.log("Please pick and action");
     console.log("---------------------------");
     console.log("press c : create an entry");
@@ -71,8 +88,10 @@ function selection(){
     console.log("press u : update an entry");
     console.log("press d : delete an entry from list");
     
-    if(readline(answer)=='c'){
-    
+    const input = prompt={};
+
+    if(input =='c'){
+        console.log('c works!!!');
     }
     
 }
