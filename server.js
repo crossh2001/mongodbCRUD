@@ -45,14 +45,14 @@ async function main(){
         
         //await findOneListingByName(client, "Horto flat with small garden" )
 
-        /*await createListing(client,
+        await createListing(client,
             {
-                name: "Lovely Loft",
+                name: "Nice Loft",
                 summary: "A charming loft in Paris",
                 bedrooms: 1,
                 bathrooms: 1
             }
-        );*/
+        );
 
     }catch(e){
         console.error(e);
