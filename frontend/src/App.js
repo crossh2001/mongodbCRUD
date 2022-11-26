@@ -4,8 +4,6 @@ import SELECTION from './selection'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-              </header>
               <SELECTION/>
     </div>
   );
