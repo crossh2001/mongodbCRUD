@@ -8,6 +8,12 @@ export default function Create() {
       position: "",
       level: "",
     });
+
+    return(<>
+        <h1>
+            Creation Page Works!!!
+        </h1>
+    </>);
 }
 
 /*await createListing(client,
