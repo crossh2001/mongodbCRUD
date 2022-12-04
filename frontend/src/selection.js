@@ -34,6 +34,9 @@ export default function Selection(){
        <Link to={`./create`}>
             <button id="create" onClick={createTest}> Create link</button>
             </Link>
+            <Link to={`./read`}>
+            <button id="read" onClick={createTest}>Read link</button>
+            </Link>
        </NavLink>
        <button
          className="navbar-toggler"
