@@ -124,12 +124,12 @@ The
 ---------------------------------------------------------------------*/
 
 export default function Create() {
-    const [form, setForm] = useState({
+  /*  const [form, setForm] = useState({
       name: "",
       position: "",
       level: "",
     });
-
+*/
     return(<>
         <h1>
             Creation Page Works!!!
