@@ -1,50 +1,68 @@
 import REACT from "react";
 import {useState} from "react";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-/*------------------------------------------------------------------
+/*
+const express = require("express");
+const cors = require("cors");
+const {MongoClient, ObjectId} = require('mongodb');
+
+
+require('dotenv').config();
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+*/
 
 export default function Create() {
- const [form, setForm] = useState({
-   name: "",
-   position: "",
-   level: "",
- });
- const navigate = useNavigate();
- 
- // These methods will update the state properties.
- function updateForm(value) {
-   return setForm((prev) => {
-     return { ...prev, ...value };
-   });
- }
- 
- // This function will handle the submission.
- async function onSubmit(e) {
-   e.preventDefault();
- 
-   // When a post request is sent to the create url, we'll add a new record to the database.
-   const newPerson = { ...form };
- 
-   await fetch("http://localhost:5000/record/add", {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify(newPerson),
-   })
-   .catch(error => {
-     window.alert(error);
-     return;
-   });
- 
-   setForm({ name: "", position: "", level: "" });
-   navigate("/");
- }
- 
- // This following section will display the form that takes the input from the user.
- return (
-   <div>
-     <h3>Create New Record</h3>
+    const [form, setForm] = useState({
+      name: "",
+      position: "",
+      level: "",
+    });
+
+    
+
+
+const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
+    
+//const client = new MongoClient(uri);
+/********************************from the 1st exercise********************************* */
+try{
+    //await client.connect();
+
+    //await findOneListingByName(client, "Horto flat with small garden" )
+
+    /*await createListing(client,
+        {
+            name: "Lovely Loft",
+            summary: "A charming loft in Paris",
+            bedrooms: 1,
+            bathrooms: 1
+        }
+    );*/
+
+}catch(e){
+    console.error(e);
+}finally{
+    //await client.close();
+}
+/****************************from the 1st exercise****************** */
+/******test function***** */
+function updateForm(){
+
+}
+/******test function***** */
+
+    return(<>
+        <h1>
+            Creation Page Works!!!
+        </h1>
+
+  {/*      <h3>Create New Record</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
          <label htmlFor="name">Name</label>
@@ -111,29 +129,11 @@ export default function Create() {
            className="btn btn-primary"
          />
        </div>
-     </form>
-   </div>
- );
-}
-edit.js
-The
+     </form>*/}
 
-
-
-
----------------------------------------------------------------------*/
-
-export default function Create() {
-  /*  const [form, setForm] = useState({
-      name: "",
-      position: "",
-      level: "",
-    });
-*/
-    return(<>
-        <h1>
-            Creation Page Works!!!
-        </h1>
+        <Link to={`/`}>
+            <button id="home"> Home</button>
+            </Link>
     </>);
 }
 
@@ -147,10 +147,9 @@ export default function Create() {
         );*/
 
 
-        /*
+        
         async function createListing(client, newListing){
         const result = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
         console.log(`New listing created with the following id: ${result.insertedId}`);
     
-        }
-        */ 
+        }         
