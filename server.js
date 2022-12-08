@@ -10,7 +10,33 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
+    
+const client = new MongoClient(uri);
+
+
 app.get('/', (req, res)=>{
+    res.send("Please pick and action");
+})
+
+app.get('/create', (req, res)=>{
+ createListing(client,
+        {
+            name: "Mushroom house",
+            summary: "nice place in the mushroom kingdom",
+            bedrooms: 2,
+            bathrooms: 1
+        }
+    );
+})
+
+app.get('/read', (req, res)=>{
+    const result =  client.db("sample_airbnb").collection("listingsAndReviews").find({});
+
+    res.send(result);
+})
+
+app.get('/update', (req, res)=>{
     res.send("Please pick and action");
 })
 
@@ -55,14 +81,14 @@ async function main(){
         
         //await findOneListingByName(client, "Horto flat with small garden" )
 
-        /*await createListing(client,
+        await createListing(client,
             {
-                name: "cool little house",
-                summary: "A charming loft in Paris",
+                name: "Mushroom house",
+                summary: "nice place in the mushroom kingdom",
                 bedrooms: 2,
                 bathrooms: 1
             }
-        );*/
+        );
 
     }catch(e){
         console.error(e);

@@ -3,12 +3,12 @@ import {useState} from "react";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
+//const express = require("express");
+//const cors = require("cors");
+//const {MongoClient, ObjectId} = require('mongodb');
+
 /*
-const express = require("express");
-const cors = require("cors");
-const {MongoClient, ObjectId} = require('mongodb');
-
-
 require('dotenv').config();
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(cors());
 export default function Create() {
     const [form, setForm] = useState({
       name: "",
-      position: "",
+      summary: "",
       level: "",
     });
 
@@ -28,7 +28,8 @@ export default function Create() {
 
 
 const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
-    
+ 
+
 //const client = new MongoClient(uri);
 /********************************from the 1st exercise********************************* */
 try{
@@ -52,9 +53,49 @@ try{
 }
 /****************************from the 1st exercise****************** */
 /******test function***** */
+
+
+
 function updateForm(){
 
 }
+
+async function onSubmit(e) {
+  e.preventDefault();
+
+  // When a post request is sent to the create url, we'll add a new record to the database.
+  const newPerson = { ...form };
+
+  await fetch("mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority"
+  , {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPerson),
+  })
+  .catch(error => {
+    window.alert(error);
+    return;
+  });
+
+  setForm({ name: "", position: "", level: "" });
+}
+
+
+const newPerson = { ...form };
+ 
+ fetch("http://localhost:5000/sample_airbnb/listingsAndReviews/add", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(newPerson),
+})
+.catch(error => {
+  window.alert(error);
+  return;
+});
 /******test function***** */
 
     return(<>
@@ -62,12 +103,11 @@ function updateForm(){
             Creation Page Works!!!
         </h1>
 
-  {/*      <h3>Create New Record</h3>
-     <form onSubmit={onSubmit}>
+        <form onSubmit={createListing}>
        <div className="form-group">
          <label htmlFor="name">Name</label>
          <input
-           type="text"
+           type="textbox"
            className="form-control"
            id="name"
            value={form.name}
@@ -75,53 +115,43 @@ function updateForm(){
          />
        </div>
        <div className="form-group">
-         <label htmlFor="position">Position</label>
+         <label htmlFor="summary">summary</label>
          <input
-           type="text"
+           type="textbox"
            className="form-control"
-           id="position"
-           value={form.position}
+           id="summary"
+           value={form.summary}
+           onChange={(e) => updateForm({ summary: e.target.value })}
+         />
+       </div>
+       <div className="form-group">
+         
+         <div className="form-check form-check-inline">
+           </div>
+         <div className="form-check form-check-inline">
+             </div>
+       </div>
+       <div className="form-group">
+         <label htmlFor="position">Bathrooms</label>
+         <input
+           type="textbox"
+           className="form-control"
+           id="bathroom"
+           value={form.bathroom}
            onChange={(e) => updateForm({ position: e.target.value })}
          />
        </div>
        <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.level === "Intern"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.level === "Junior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.level === "Senior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-         </div>
+         <label htmlFor="bedroom">Bedroom</label>
+         <input
+           type="textbox"
+           className="form-control"
+           id="bedroom"
+           value={form.bedroom}
+           onChange={(e) => updateForm({ position: e.target.value })}
+         />
        </div>
+
        <div className="form-group">
          <input
            type="submit"
@@ -129,7 +159,7 @@ function updateForm(){
            className="btn btn-primary"
          />
        </div>
-     </form>*/}
+     </form>
 
         <Link to={`/`}>
             <button id="home"> Home</button>
