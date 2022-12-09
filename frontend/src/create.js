@@ -3,7 +3,6 @@ import {useState} from "react";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-
 //const express = require("express");
 //const cors = require("cors");
 //const {MongoClient, ObjectId} = require('mongodb');
@@ -21,7 +20,8 @@ export default function Create() {
     const [form, setForm] = useState({
       name: "",
       summary: "",
-      level: "",
+      bedroom: "",
+      bathroom: "",
     });
 
     
@@ -55,19 +55,23 @@ try{
 /******test function***** */
 
 
+//const navigate = useNavigate();
 
-function updateForm(){
-
+// These methods will update the state properties.
+function updateForm(value) {
+  return setForm((prev) => {
+    return { ...prev, ...value };
+  });
 }
 
+// This function will handle the submission.
 async function onSubmit(e) {
   e.preventDefault();
 
   // When a post request is sent to the create url, we'll add a new record to the database.
   const newPerson = { ...form };
 
-  await fetch("mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority"
-  , {
+  await fetch("http://localhost:5000/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -79,23 +83,9 @@ async function onSubmit(e) {
     return;
   });
 
-  setForm({ name: "", position: "", level: "" });
+  setForm({ name: "", summary: "", bedroom: "", bathroom: ""});
+  //navigate("/");
 }
-
-
-const newPerson = { ...form };
- 
- fetch("http://localhost:5000/sample_airbnb/listingsAndReviews/add", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(newPerson),
-})
-.catch(error => {
-  window.alert(error);
-  return;
-});
 /******test function***** */
 
     return(<>

@@ -83,10 +83,10 @@ async function main(){
 
         await createListing(client,
             {
-                name: "Mushroom house",
-                summary: "nice place in the mushroom kingdom",
-                bedrooms: 2,
-                bathrooms: 1
+                name: "Castle 4",
+                summary: "Beautiful castle ",
+                bedrooms: 100,
+                bathrooms: 100
             }
         );
 
