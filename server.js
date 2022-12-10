@@ -19,15 +19,19 @@ app.get('/', (req, res)=>{
     res.send("Please pick and action");
 })
 
-app.get('/create', (req, res)=>{
- createListing(client,
+app.post('/create', (req, res)=>{
+ /*createListing(client,
         {
-            name: "Mushroom house",
-            summary: "nice place in the mushroom kingdom",
-            bedrooms: 2,
-            bathrooms: 1
+            name: "Peach Castle",
+            summary: "Princess Peach Toadstoals personal castle",
+            bedrooms: 100,
+            bathrooms: 100
         }
-    );
+    );*/
+
+    main().catch(console.error);
+
+    res.send("New Listing has been added");
 })
 
 app.get('/read', (req, res)=>{
@@ -83,12 +87,13 @@ async function main(){
 
         await createListing(client,
             {
-                name: "Castle 4",
-                summary: "Beautiful castle ",
+                name: "Water Castle",
+                summary: "Pretty Castle in WaterLand",
                 bedrooms: 100,
                 bathrooms: 100
             }
         );
+
 
     }catch(e){
         console.error(e);
@@ -97,7 +102,7 @@ async function main(){
     }
 }
 
-main().catch(console.error);
+//main().catch(console.error);
 
 function selection(){
     /*console.log("Please pick and action");
