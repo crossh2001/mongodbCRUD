@@ -20,14 +20,6 @@ app.get('/', (req, res)=>{
 })
 
 app.post('/create', (req, res)=>{
- /*createListing(client,
-        {
-            name: "Peach Castle",
-            summary: "Princess Peach Toadstoals personal castle",
-            bedrooms: 100,
-            bathrooms: 100
-        }
-    );*/
 
     main().catch(console.error);
 
@@ -59,14 +51,13 @@ const PORT = process.env.PORT || 5000;
 
 //const uri =process.env.ATLAS_URI; 
 
-
 async function main(){
     //const uri =process.env.ATLAS_URI;
-    //const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
-
+    
     const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
     
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri, {useNewUrlParser: true,
+        useUnifiedTopology: true,});
 
     try{
         await client.connect();
@@ -87,8 +78,8 @@ async function main(){
 
         await createListing(client,
             {
-                name: "Water Castle",
-                summary: "Pretty Castle in WaterLand",
+                name: "Grass Castle",
+                summary: "Pretty Castle in GrassLand",
                 bedrooms: 100,
                 bathrooms: 100
             }
@@ -121,9 +112,7 @@ function selection(){
     
     const input = prompt={};
 
-    if(input =='c'){
-        console.log('c works!!!');
-    }
+  
     
 }
 

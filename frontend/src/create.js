@@ -2,19 +2,8 @@ import REACT from "react";
 import {useState} from "react";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
-//const express = require("express");
-//const cors = require("cors");
-//const {MongoClient, ObjectId} = require('mongodb');
-
-/*
-require('dotenv').config();
-
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-*/
 
 export default function Create() {
     const [form, setForm] = useState({
@@ -24,8 +13,6 @@ export default function Create() {
       bathroom: "",
     });
 
-    
-
 
 const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
  
@@ -33,18 +20,7 @@ const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retr
 //const client = new MongoClient(uri);
 /********************************from the 1st exercise********************************* */
 try{
-    //await client.connect();
-
-    //await findOneListingByName(client, "Horto flat with small garden" )
-
-    /*await createListing(client,
-        {
-            name: "Lovely Loft",
-            summary: "A charming loft in Paris",
-            bedrooms: 1,
-            bathrooms: 1
-        }
-    );*/
+ 
 
 }catch(e){
     console.error(e);
@@ -55,7 +31,7 @@ try{
 /******test function***** */
 
 
-//const navigate = useNavigate();
+const navigate = useNavigate();
 
 // These methods will update the state properties.
 function updateForm(value) {
@@ -84,7 +60,8 @@ async function onSubmit(e) {
   });
 
   setForm({ name: "", summary: "", bedroom: "", bathroom: ""});
-  //navigate("/");
+  navigate("/");
+  console.log(form);
 }
 /******test function***** */
 
@@ -93,7 +70,7 @@ async function onSubmit(e) {
             Creation Page Works!!!
         </h1>
 
-        <form onSubmit={createListing}>
+        <form onSubmit={onSubmit}>
        <div className="form-group">
          <label htmlFor="name">Name</label>
          <input
@@ -128,7 +105,7 @@ async function onSubmit(e) {
            className="form-control"
            id="bathroom"
            value={form.bathroom}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           onChange={(e) => updateForm({ bathroom: e.target.value })}
          />
        </div>
        <div className="form-group">
@@ -138,14 +115,14 @@ async function onSubmit(e) {
            className="form-control"
            id="bedroom"
            value={form.bedroom}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           onChange={(e) => updateForm({ bedroom: e.target.value })}
          />
        </div>
 
        <div className="form-group">
          <input
            type="submit"
-           value="Create person"
+           value="Create"
            className="btn btn-primary"
          />
        </div>
@@ -157,14 +134,6 @@ async function onSubmit(e) {
     </>);
 }
 
-/*await createListing(client,
-            {
-                name: "cool little house",
-                summary: "A charming loft in Paris",
-                bedrooms: 2,
-                bathrooms: 1
-            }
-        );*/
 
 
         
