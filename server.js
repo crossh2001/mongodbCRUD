@@ -21,7 +21,23 @@ app.get('/', (req, res)=>{
 
 app.post('/create', (req, res)=>{
 
-    main().catch(console.error);
+    
+    console.log("This part workds");
+
+    const inputObj ={
+        name: req.body.name,
+        summary: req.body.summary,
+        bedrooms: req.body.bedrooms,
+        bathrooms:req.body.bathrooms
+    }
+
+    main(inputObj).catch(console.error);
+
+    /*********************** */
+    console.log("This part ");
+    
+    /************************ */
+
 
     res.send("New Listing has been added");
 })
@@ -51,7 +67,7 @@ const PORT = process.env.PORT || 5000;
 
 //const uri =process.env.ATLAS_URI; 
 
-async function main(){
+async function main(inputObj){
     //const uri =process.env.ATLAS_URI;
     
     const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
@@ -76,14 +92,7 @@ async function main(){
         
         //await findOneListingByName(client, "Horto flat with small garden" )
 
-        await createListing(client,
-            {
-                name: "Grass Castle",
-                summary: "Pretty Castle in GrassLand",
-                bedrooms: 100,
-                bathrooms: 100
-            }
-        );
+        await createListing(client, inputObj);
 
 
     }catch(e){
@@ -95,26 +104,7 @@ async function main(){
 
 //main().catch(console.error);
 
-function selection(){
-    /*console.log("Please pick and action");
-    console.log("---------------------------");
-    console.log("press c : create an entry");
-    console.log("press r : list all entries");
-    console.log("press u : update an entry");
-    console.log("press d : delete an entry from list");*/
 
-    console.log("Please pick and action");
-    console.log("---------------------------");
-    console.log("press c : create an entry");
-    console.log("press r : list all entries");
-    console.log("press u : update an entry");
-    console.log("press d : delete an entry from list");
-    
-    const input = prompt={};
-
-  
-    
-}
 
 async function deleteListingByName(client, nameOfListing){
     const result = await client.db("sample_airbnb").collection("listingsAndReviews").deleteOne(

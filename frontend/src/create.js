@@ -14,7 +14,6 @@ export default function Create() {
     });
 
 
-const uri="mongodb+srv://voltron:1billy2jimmy@cluster0.mfdgx3d.mongodb.net/?retryWrites=true&w=majority";
  
 
 //const client = new MongoClient(uri);
